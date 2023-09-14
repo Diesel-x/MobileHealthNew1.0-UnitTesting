@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile">Профиль</string>
+    <string name="growth">Рост</string>
+    <string name="weight">Вес</string>
+    <string name="birth_date">Дата рождения</string>
+    <string name="save">Сохранить</string>
+    <string name="main">Главная</string>
+    <string name="pfc">БЖУ</string>
+    <string name="water_regime">Водный режим</string>
+    <string name="steps">Шаги</string>
+    <string name="medicines">Лекарства</string>
+    <string name="breath_technics">Дыхательные техники</string>
+    <string name="workouts">Тренировки</string>
+    <string name="steps_today">Шагов сегодня:</string>
+    <string name="from">из</string>
+    <string name="goal_achieved">Вы достигали свою цель</string>
+    <string name="days_in_a_row">дня(-ей) подряд</string>
+    <string name="week">неделя</string>
+    <string name="month">месяц</string>
+    <string name="year">год</string>
+    <string name="ml">мл</string>
+    <string name="add">Добавить</string>
+    <string name="proteins">Белки</string>
+    <string name="fats">Жиры</string>
+    <string name="carbs">Углеводы</string>
+    <string name="name">Название</string>
+    <string name="reception_time">Время приема</string>
+    <string name="course_duration">Длительность курса</string>
+    <string name="remain">Осталось</string>
+    <string name="medicine_adding">Добавление лекарства</string>
+    <string name="settings">Настройки</string>
+    <string name="localization">Локализация</string>
+    <string name="rest_time">Время отдыха</string>
+    <string name="push_notification">Пуш-уведомления</string>
+    <string name="russian">Русский</string>
+    <string name="english">Английский</string>
+    <string name="breast">Грудь</string>
+    <string name="back">Спина</string>
+    <string name="legs">Ноги</string>
+    <string name="abs">Кор</string>
+    <string name="put_your_weight">Укажите ваш вес в профиле</string>
+</resources>

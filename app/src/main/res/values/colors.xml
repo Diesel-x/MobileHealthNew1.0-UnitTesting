@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="bottom_menu">#E7E7E7</color>
+    <color name="not_enabled">#787878</color>
+    <color name="selected">#25A66B</color>
+    <color name="pfc">#358038</color>
+    <color name="water_regime">#4AB4B4</color>
+    <color name="steps">#4156C5</color>
+    <color name="medicines">#CE4D4D</color>
+    <color name="breath_technics">#B4B4B4</color>
+    <color name="workouts">#EFA03E</color>
+    <color name="hint">#A3A3A3</color>
+</resources>

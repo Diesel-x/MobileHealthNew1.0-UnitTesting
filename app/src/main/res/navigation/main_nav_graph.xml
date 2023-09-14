@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.novikov.mobilehealth.presentation.view.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_PFCFragment"
+            app:destination="@id/PFCFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment2"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_waterRegimeFragment"
+            app:destination="@id/waterRegimeFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_stepsFragment"
+            app:destination="@id/stepsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_medicineFragment"
+            app:destination="@id/medicineFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_workoutFragment"
+            app:destination="@id/workoutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/PFCFragment"
+        android:name="com.novikov.mobilehealth.presentation.view.PFCFragment"
+        android:label="fragment_pfc"
+        tools:layout="@layout/fragment_pfc" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.novikov.mobilehealth.presentation.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/waterRegimeFragment"
+        android:name="com.novikov.mobilehealth.presentation.view.WaterRegimeFragment"
+        android:label="fragment_water_regime"
+        tools:layout="@layout/fragment_water_regime" />
+    <fragment
+        android:id="@+id/stepsFragment"
+        android:name="com.novikov.mobilehealth.presentation.view.StepsFragment"
+        android:label="fragment_steps"
+        tools:layout="@layout/fragment_steps" />
+    <fragment
+        android:id="@+id/medicineFragment"
+        android:name="com.novikov.mobilehealth.presentation.view.MedicineFragment"
+        android:label="fragment_medicine"
+        tools:layout="@layout/fragment_medicine" />
+    <fragment
+        android:id="@+id/workoutFragment"
+        android:name="com.novikov.mobilehealth.presentation.view.WorkoutFragment"
+        android:label="fragment_workout"
+        tools:layout="@layout/fragment_workout" />
+</navigation>
