@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class WaterRegimeFragment extends Fragment {
 
     private Button btnAdd;
     private ImageButton btnBack;
+    private ImageView ivGlass;
 
     private WaterRegimeViewModel vm;
 
@@ -72,6 +74,34 @@ public class WaterRegimeFragment extends Fragment {
             }
         });
 
+        sbDrunkWater.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if(i <= seekBar.getMax()*0.25){
+                    ivGlass.setImageResource(R.drawable.glass_25);
+                }
+                else if(i > seekBar.getMax()*0.25 && i <= seekBar.getMax()*0.50){
+                    ivGlass.setImageResource(R.drawable.glass_50);
+                }
+                else if(i > seekBar.getMax()*0.50 && i <= seekBar.getMax()*0.75){
+                    ivGlass.setImageResource(R.drawable.glass_75);
+                }
+                else{
+                    ivGlass.setImageResource(R.drawable.glass_full);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
         return view;
     }
 
@@ -83,6 +113,7 @@ public class WaterRegimeFragment extends Fragment {
         pbWater = view.findViewById(R.id.pbWaterRegimeProgress);
 
         sbDrunkWater = view.findViewById(R.id.sbDrunkWater);
+        ivGlass = view.findViewById(R.id.ivGlass);
 
         btnBack = view.findViewById(R.id.btnBack);
         btnAdd = view.findViewById(R.id.btnAdd);
