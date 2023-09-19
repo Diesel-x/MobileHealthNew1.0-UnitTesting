@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
-                android:text="1800/2000ml" />
+                android:text="0/2000ml" />
 
             <ProgressBar
                 android:id="@+id/pbWaterRegimeProgress"

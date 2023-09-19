@@ -18,10 +18,9 @@ import java.util.Objects;
 public class WaterRegimeViewModel extends ViewModel {
 
     private Context context;
-    public MutableLiveData<Integer> waterCurrentCount = new MutableLiveData<>();
-    public MutableLiveData<Integer> waterGoalCount = new MutableLiveData<>();
-    public MutableLiveData<Integer> waterAddCount = new MutableLiveData<>();
-    public MutableLiveData<Integer> rowGoal = new MutableLiveData<>();
+    public MutableLiveData<Integer> waterCurrentCount = new MutableLiveData<>(0);
+    public MutableLiveData<Integer> waterGoalCount = new MutableLiveData<>(0);
+    public MutableLiveData<Integer> rowGoal = new MutableLiveData<>(0);
 
     private WaterRegimeModel waterRegimeModel;
 
@@ -29,23 +28,14 @@ public class WaterRegimeViewModel extends ViewModel {
 
         this.context = context;
 
-    }
+        getCurrentData();
+        setWaterGoal();
 
-    public void setGoal(){
-
-        ProfileInfoModel profileInfoModel = ProfileRepository.getProfileInfo(context);
-
-        if (profileInfoModel != null){
-            waterGoalCount.setValue(profileInfoModel.getWeight()*30);
-        }
-        else{
-            waterGoalCount.setValue(0);
-            Toast.makeText(context, context.getString(R.string.put_your_weight), Toast.LENGTH_SHORT).show();
-        }
     }
 
     public void addAction(int waterCount){
         waterCurrentCount.setValue(waterCurrentCount.getValue()+waterCount);
+        saveCurrentData();
     }
 
     public void getCurrentData(){
@@ -82,7 +72,12 @@ public class WaterRegimeViewModel extends ViewModel {
 
         ProfileInfoModel profileInfoModel = ProfileRepository.getProfileInfo(context);
 
-        waterGoalCount.setValue(profileInfoModel.getWeight()*30);
+        if(profileInfoModel != null)
+            waterGoalCount.setValue(profileInfoModel.getWeight()*30);
+        else{
+            waterGoalCount.setValue(0);
+            Toast.makeText(context, context.getString(R.string.put_your_weight), Toast.LENGTH_SHORT).show();
+        }
 
     }
 

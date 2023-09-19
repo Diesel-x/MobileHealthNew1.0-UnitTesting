@@ -3,6 +3,7 @@ package com.novikov.mobilehealth.presentation.view;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import com.novikov.mobilehealth.R;
 import com.novikov.mobilehealth.presentation.viewmodels.WaterRegimeViewModel;
 import com.novikov.mobilehealth.presentation.viewmodels.factories.WaterRegimeViewModelFactory;
+
+import java.text.MessageFormat;
 
 public class WaterRegimeFragment extends Fragment {
 
@@ -51,7 +54,21 @@ public class WaterRegimeFragment extends Fragment {
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                vm.waterAddCount.setValue(sbDrunkWater.getProgress());
+                vm.addAction(sbDrunkWater.getProgress());
+            }
+        });
+
+        vm.waterGoalCount.observe(requireActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                tvWaterCount.setText(MessageFormat.format("{0}/{1}ml", vm.waterCurrentCount.getValue(), integer));
+            }
+        });
+
+        vm.waterCurrentCount.observe(requireActivity(), new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                tvWaterCount.setText(MessageFormat.format("{0}/{1}ml", integer, vm.waterGoalCount.getValue()));
             }
         });
 
