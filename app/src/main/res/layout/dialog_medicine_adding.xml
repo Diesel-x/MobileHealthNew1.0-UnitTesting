@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="32dp">
 
     <TextView
         android:id="@+id/textView"
@@ -60,6 +61,34 @@
         app:layout_constraintStart_toStartOf="@+id/etAddMedicineName"
         app:layout_constraintTop_toBottomOf="@+id/etAddMedicineReceptionTime" />
 
+    <EditText
+        android:id="@+id/etAddMedicineStartDate"
+        style="@style/main_edittext_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:backgroundTint="@color/medicines"
+        android:ems="10"
+        android:hint="@string/start_date"
+        android:inputType="datetime|date"
+        app:layout_constraintEnd_toEndOf="@+id/etAddMedicineName"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/etAddMedicineName"
+        app:layout_constraintTop_toBottomOf="@+id/etAddMedicineReceptionTime" />
+
+    <Spinner
+        android:id="@+id/spinnerAddMedicineType"
+        style="@style/spinner_main_style"
+        android:layout_width="256dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="32dp"
+        android:entries="@array/medicine_types"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddMedicineStartDate" />
+
     <Button
         android:id="@+id/btnAddMedicine"
         style="@style/main_button_style"
@@ -74,14 +103,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerAddMedicineType" />
 
-    <Spinner
-        android:id="@+id/spinnerAddMedicineType"
-        style="@style/spinner_main_style"
-        android:layout_width="256dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="24dp"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etAddMedicineCourseDuration" />
 </androidx.constraintlayout.widget.ConstraintLayout>

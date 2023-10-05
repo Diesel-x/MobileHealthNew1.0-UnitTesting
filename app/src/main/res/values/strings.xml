@@ -38,6 +38,11 @@
     <string name="russian">Russian</string>
     <string name="english">English</string>
 
+    <string-array name="medicine_types">
+        <item>Pill</item>
+        <item>Syrup</item>
+    </string-array>
+
     <array name="locals">
         <item>@string/english</item>
         <item>@string/russian</item>
@@ -47,4 +52,5 @@
     <string name="legs">Legs</string>
     <string name="abs">ABS</string>
     <string name="put_your_weight">Put your weight in your profile</string>
+    <string name="start_date">Start date</string>
 </resources>

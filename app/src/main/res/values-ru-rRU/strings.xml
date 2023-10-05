@@ -40,4 +40,11 @@
     <string name="legs">Ноги</string>
     <string name="abs">Кор</string>
     <string name="put_your_weight">Укажите ваш вес в профиле</string>
+    <string name="start_date">Дата начала</string>
+
+    <string-array name="medicine_types">
+        <item>Таблетка</item>
+        <item>Сироп</item>
+    </string-array>
+
 </resources>
