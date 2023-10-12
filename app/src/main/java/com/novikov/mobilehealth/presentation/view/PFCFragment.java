@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.novikov.mobilehealth.R;
 import com.novikov.mobilehealth.presentation.viewmodels.PFCViewModel;
@@ -60,6 +61,12 @@ public class PFCFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                if (etAddProteins.getText().toString().isEmpty() ||
+                        etAddFats.getText().toString().isEmpty() ||
+                        etAddCarbs.getText().toString().isEmpty()){
+                    Toast.makeText(requireContext(), "Неправильно заполненные поля", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 vm.addAction(Integer.parseInt(etAddProteins.getText().toString()),
                         Integer.parseInt(etAddFats.getText().toString()),
                         Integer.parseInt(etAddCarbs.getText().toString()));

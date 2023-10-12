@@ -28,9 +28,10 @@ public class ProfileViewModel extends ViewModel {
         if (growth != null && weight != null) {
             ProfileRepository.saveProfileInfo(context,
                     new ProfileInfoModel(growth.getValue(), weight.getValue(), birthDate.getValue()));
+            Toast.makeText(context, "Данные успешно сохранены", Toast.LENGTH_SHORT).show();
         }
         else{
-            Toast.makeText(context, "Empty fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
         }
     }
 

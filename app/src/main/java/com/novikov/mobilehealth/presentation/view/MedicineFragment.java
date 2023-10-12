@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.novikov.mobilehealth.R;
 import com.novikov.mobilehealth.adapters.MedicineAdapter;
@@ -99,21 +100,26 @@ public class MedicineFragment extends Fragment {
 //                                    Integer.parseInt(etDuration.getText().toString()),
 //                                    spinnerType.getSelectedItem().toString(),
 //                                    LocalDate.parse(etStartDate.getText(), DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
-                            medicineList.add(new MedicineModel(etName.getText().toString(),
-                                    etTime.getText().toString(),
-                                    Integer.parseInt(etDuration.getText().toString()),
-                                    spinnerType.getSelectedItem().toString(),
-                                    etStartDate.getText().toString()));
+                            if(etName.getText().toString().isEmpty() || etTime.getText().toString().isEmpty() ||
+                                    etDuration.getText().toString().isEmpty() || etStartDate.getText().toString().isEmpty()){
+                                Toast.makeText(requireContext(), "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                medicineList.add(new MedicineModel(etName.getText().toString(),
+                                        etTime.getText().toString(),
+                                        Integer.parseInt(etDuration.getText().toString()),
+                                        spinnerType.getSelectedItem().toString(),
+                                        etStartDate.getText().toString()));
 
-                            rvMedicines.getAdapter().notifyDataSetChanged();
+                                rvMedicines.getAdapter().notifyDataSetChanged();
 
-                            vm.medicineList.setValue(medicineList);
+                                vm.medicineList.setValue(medicineList);
 
-                            vm.saveCurrentData();
+                                vm.saveCurrentData();
 
-                            Log.i("dialog", "complete");
-                            dialog.dismiss();
-
+                                Log.i("dialog", "complete");
+                                dialog.dismiss();
+                            }
                         }
                     });
                 Log.i("fragment", "complete");

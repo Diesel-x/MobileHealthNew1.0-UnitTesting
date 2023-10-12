@@ -71,7 +71,7 @@ public class ProfileFragment extends Fragment {
                 if(etGrowth.getText().toString().isEmpty() || etWeight.getText().toString().isEmpty()
                 || etBirthDate.getText().toString().isEmpty()) {
 
-                    Toast.makeText(requireContext(), "Empty fields", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 vm.growth.setValue(Integer.valueOf(etGrowth.getText().toString()));
