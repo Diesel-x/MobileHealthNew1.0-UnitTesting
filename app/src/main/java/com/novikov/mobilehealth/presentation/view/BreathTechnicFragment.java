@@ -1,10 +1,13 @@
 package com.novikov.mobilehealth.presentation.view;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -41,6 +44,8 @@ public class BreathTechnicFragment extends Fragment {
 
     BreathTechnicAdapter adapter;
 
+    ConnectivityManager cm;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,21 +57,24 @@ public class BreathTechnicFragment extends Fragment {
         listInitialization();
         return view;
     }
-    private void init(){
-        rvBreathTechnics = view.findViewById(R.id.rvBreathTechnics);
-    }
-    private void listInitialization(){
 
+    private void init() {
+        rvBreathTechnics = view.findViewById(R.id.rvBreathTechnics);
+        cm = (ConnectivityManager) requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+    }
+
+    private void listInitialization() {
+        if(cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected()){
         breathsDatabase.child("breath_technics").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 breathsCount = (int) snapshot.getChildrenCount();
                 Log.e("breathsCount", String.valueOf(breathsCount));
-                for(int i = 1; i <= breathsCount; i++){
+                for (int i = 1; i <= breathsCount; i++) {
                     breathsDatabase.child("breath_technics").child(String.valueOf(i)).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DataSnapshot> task) {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 breathsTechnicName = String.valueOf(task.getResult().child("name").getValue());
                                 breathsTechnicContent = String.valueOf(task.getResult().child("describe").getValue());
                                 Log.e("breathName", breathsTechnicName);
@@ -74,8 +82,7 @@ public class BreathTechnicFragment extends Fragment {
                                 BreathTechnic breathTechnic = new BreathTechnic(breathsTechnicName, breathsTechnicContent);
                                 breathTechnics.add(breathTechnic);
                                 adapter.notifyDataSetChanged();
-                            }
-                            else{
+                            } else {
                                 Log.e("breath", "error");
                             }
                         }
@@ -86,10 +93,13 @@ public class BreathTechnicFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("database", error.toString());
+                Toast.makeText(requireContext(), "Произошла ошибка", Toast.LENGTH_SHORT).show();
             }
         });
-
-
-
     }
+
+    else {
+        Toast.makeText(requireContext(), "Ошибка соединения", Toast.LENGTH_SHORT).show();
+    }
+}
 }
