@@ -58,6 +58,8 @@ public class MainFragment extends Fragment {
                     case 4:
                         ((MainActivity)requireActivity()).navController.navigate(R.id.action_mainFragment_to_workoutFragment);
                         break;
+                    case 5:
+                        ((MainActivity)requireActivity()).navController.navigate(R.id.action_mainFragment_to_breathTechnicFragment);
                 }
             }
         };

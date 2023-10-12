@@ -2,13 +2,18 @@ package com.novikov.mobilehealth.presentation.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.novikov.mobilehealth.R;
@@ -26,6 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         if(getSupportActionBar() != null)
             getSupportActionBar().hide();
+
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) == PackageManager.PERMISSION_DENIED){
+            Toast.makeText(this, "Для корректной работы приложения нужно разрешить доступ к активности", Toast.LENGTH_LONG).show();
+            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.ACTIVITY_RECOGNITION }, 1);
+        }
 
         init();
 

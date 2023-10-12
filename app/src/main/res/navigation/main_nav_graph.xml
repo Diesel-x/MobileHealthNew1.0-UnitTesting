@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_mainFragment_to_workoutFragment"
             app:destination="@id/workoutFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_breathTechnicFragment"
+            app:destination="@id/breathTechnicFragment" />
     </fragment>
     <fragment
         android:id="@+id/PFCFragment"
@@ -63,4 +66,8 @@
         android:name="com.novikov.mobilehealth.presentation.view.WorkoutFragment"
         android:label="fragment_workout"
         tools:layout="@layout/fragment_workout" />
+    <fragment
+        android:id="@+id/breathTechnicFragment"
+        android:name="com.novikov.mobilehealth.presentation.view.BreathTechnicFragment"
+        android:label="BreathTechnicFragment" />
 </navigation>

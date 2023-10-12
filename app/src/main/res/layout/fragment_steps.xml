@@ -70,7 +70,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="6543" />
+                        android:text="0" />
 
                     <TextView
                         style="@style/steps_textview_style"
