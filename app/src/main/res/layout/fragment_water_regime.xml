@@ -144,6 +144,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivGlass" />
 
+        <TextView
+            android:id="@+id/tvAddCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ml"
+            app:layout_constraintBottom_toTopOf="@+id/sbDrunkWater"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivGlass"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -7,7 +7,7 @@
     android:paddingHorizontal="32dp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvMedicineAddingTitle"
         style="@style/steps_textview_style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,10 +27,11 @@
         android:backgroundTint="@color/medicines"
         android:ems="10"
         android:hint="@string/name"
-        android:inputType="text"
+        android:maxLength="30"
+        android:inputType="text|textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvMedicineAddingTitle" />
 
     <EditText
         android:id="@+id/etAddMedicineReceptionTime"
@@ -42,6 +43,7 @@
         android:ems="10"
         android:hint="@string/reception_time"
         android:inputType="datetime|time"
+        android:maxLength="5"
         app:layout_constraintEnd_toEndOf="@+id/etAddMedicineName"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="@+id/etAddMedicineName"
@@ -56,6 +58,7 @@
         android:backgroundTint="@color/medicines"
         android:ems="10"
         android:hint="@string/course_duration"
+        android:maxLength="3"
         android:inputType="datetime|time"
         app:layout_constraintEnd_toEndOf="@+id/etAddMedicineName"
         app:layout_constraintStart_toStartOf="@+id/etAddMedicineName"
@@ -70,6 +73,7 @@
         android:backgroundTint="@color/medicines"
         android:ems="10"
         android:hint="@string/start_date"
+        android:maxLength="10"
         android:inputType="datetime|date"
         app:layout_constraintEnd_toEndOf="@+id/etAddMedicineName"
         app:layout_constraintHorizontal_bias="0.0"

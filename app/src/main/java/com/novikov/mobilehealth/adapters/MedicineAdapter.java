@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.novikov.mobilehealth.R;
+import com.novikov.mobilehealth.domain.interfaces.IOnMedicineRVItemClick;
 import com.novikov.mobilehealth.domain.models.MedicineModel;
 
 import java.util.ArrayList;
@@ -20,10 +21,12 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
 
     private List<MedicineModel> medicineList;
     private LayoutInflater inflater;
+    private IOnMedicineRVItemClick onClickInterface;
 
-    public MedicineAdapter(List<MedicineModel> medicineList, Context context) {
+    public MedicineAdapter(List<MedicineModel> medicineList, Context context, IOnMedicineRVItemClick onClickInterface) {
         this.medicineList = medicineList;
         inflater = LayoutInflater.from(context);
+        this.onClickInterface = onClickInterface;
     }
 
     @NonNull
@@ -41,6 +44,13 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         holder.tvDuration.setText(String.valueOf(medicineModel.getDuration()));
         holder.tvTime.setText(medicineModel.getTime().toString());
         holder.tvStartDate.setText(medicineModel.getStartDate().toString());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickInterface.onClick(medicineModel, position);
+            }
+        });
 
     }
 

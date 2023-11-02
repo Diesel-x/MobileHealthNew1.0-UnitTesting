@@ -6,13 +6,58 @@
     android:layout_height="match_parent"
     tools:context=".BreathTechnicFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvBreathTechnics"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginVertical="36dp"
-        android:orientation="horizontal"/>
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/breath_technics"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@null"
+                android:paddingTop="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/mobilehealth_back_icon"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="14dp" />
+
+            <TextView
+                style="@style/main_title_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/andika_new_basic_bold"
+                android:text="@string/breath_technics"
+                tools:layout_editor_absoluteX="178dp"
+                tools:layout_editor_absoluteY="15dp" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvBreathTechnics"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="86dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar3">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

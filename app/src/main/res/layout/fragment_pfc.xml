@@ -170,6 +170,7 @@
                         android:ems="10"
                         android:hint="@string/proteins"
                         android:inputType="number"
+                        android:maxLength="3"
                         android:textAlignment="center" />
 
                     <EditText
@@ -182,6 +183,7 @@
                         android:ems="10"
                         android:hint="@string/fats"
                         android:inputType="number"
+                        android:maxLength="3"
                         android:textAlignment="center" />
 
                     <EditText
@@ -193,6 +195,7 @@
                         android:ems="10"
                         android:hint="@string/carbs"
                         android:inputType="number"
+                        android:maxLength="3"
                         android:textAlignment="center" />
 
                 </LinearLayout>

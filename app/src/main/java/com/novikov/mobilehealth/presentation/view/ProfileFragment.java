@@ -69,15 +69,27 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(etGrowth.getText().toString().isEmpty() || etWeight.getText().toString().isEmpty()
-                || etBirthDate.getText().toString().isEmpty()) {
-
+                || !(etBirthDate.getText().toString().matches("\\d{4}-\\d{2}-\\d{2}"))) {
                     Toast.makeText(requireContext(), "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                vm.growth.setValue(Integer.valueOf(etGrowth.getText().toString()));
-                vm.weight.setValue(Integer.valueOf(etWeight.getText().toString()));
+                if(Integer.valueOf(etBirthDate.getText().toString().substring(0,4)) < 2015 ||
+                        Integer.valueOf(etBirthDate.getText().toString().substring(5,7)) < 12 ||
+                        Integer.valueOf(etBirthDate.getText().toString().substring(5,7)) < 12){
+                    vm.growth.setValue(Integer.valueOf(etGrowth.getText().toString()));
+                    vm.weight.setValue(Integer.valueOf(etWeight.getText().toString()));
+                    vm.birthDate.setValue(new GregorianCalendar(Integer.valueOf(etBirthDate.getText().toString().substring(0,4)),
+                            Integer.valueOf(etBirthDate.getText().toString().substring(5,7)),
+                            Integer.valueOf(etBirthDate.getText().toString().substring(8,10))).getTimeInMillis());
+                    vm.saveInfo();
+                    Log.i("year", etBirthDate.getText().toString().substring(0,4));
+                    Log.i("month", etBirthDate.getText().toString().substring(5,7));
+                    Log.i("day", etBirthDate.getText().toString().substring(8,10));
+                }
+                else{
+                    Toast.makeText(requireContext(), "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
+                }
 
-                vm.saveInfo();
             }
         });
 

@@ -53,4 +53,24 @@
     <string name="abs">ABS</string>
     <string name="put_your_weight">Put your weight in your profile</string>
     <string name="start_date">Start date</string>
+    <string name="breast_description">triceps, shoulders</string>
+    <string name="back_description">biceps, forearms</string>
+    <string name="legs_description">lower back, abs</string>
+    <string name="abs_description">legs</string>
+    <string name="exercises">Exercises</string>
+    <string name="go_back">Back</string>
+    <string name="classic_push_ups">Classic Push ups</string>
+    <string name="diamond_push_ups">Diamond Push ups</string>
+    <string name="wide_push_ups">Wide Push ups</string>
+    <string name="classic_pull_ups">Classic Pull ups</string>
+    <string name="wide_pull_ups">Wide Pull ups</string>
+    <string name="superman">Superman</string>
+    <string name="squats">Squats</string>
+    <string name="lunges">Lunges</string>
+    <string name="crossfit_squats">Crossfit squats</string>
+    <string name="toe_up">Toe up</string>
+    <string name="twists">Twists</string>
+    <string name="half_twists">Half twists</string>
+    <string name="alpinist">Alpinist</string>
+    <string name="plank">Plank</string>
 </resources>

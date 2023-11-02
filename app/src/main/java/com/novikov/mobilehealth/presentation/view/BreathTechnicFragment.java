@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,8 @@ public class BreathTechnicFragment extends Fragment {
 
     private View view;
 
+    private ImageButton btnBack;
+
     private List<BreathTechnic> breathTechnics = new ArrayList<>();
 
     private int breathsCount;
@@ -55,11 +58,21 @@ public class BreathTechnicFragment extends Fragment {
         adapter = new BreathTechnicAdapter(getContext(), breathTechnics);
         rvBreathTechnics.setAdapter(adapter);
         listInitialization();
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)requireActivity()).navController.navigate(R.id.mainFragment);
+            }
+        });
+
         return view;
     }
 
     private void init() {
         rvBreathTechnics = view.findViewById(R.id.rvBreathTechnics);
+        btnBack = view.findViewById(R.id.btnBack);
+
         cm = (ConnectivityManager) requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
     }
 

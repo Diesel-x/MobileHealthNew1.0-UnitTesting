@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,8 +26,7 @@ import java.text.MessageFormat;
 
 public class WaterRegimeFragment extends Fragment {
 
-    private TextView tvWaterCount;
-    private TextView tvGoalRowDays;
+    private TextView tvWaterCount, tvAddCount, tvGoalRowDays;
 
     private SeekBar sbDrunkWater;
 
@@ -46,6 +46,10 @@ public class WaterRegimeFragment extends Fragment {
 
         init(view);
 
+        vm.setWaterGoal();
+
+        tvAddCount.setText(String.valueOf(sbDrunkWater.getProgress()));
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +68,8 @@ public class WaterRegimeFragment extends Fragment {
             @Override
             public void onChanged(Integer integer) {
                 tvWaterCount.setText(MessageFormat.format("{0}/{1}ml", vm.waterCurrentCount.getValue(), integer));
+                pbWater.setMax(integer);
+                Log.i("max", String.valueOf(pbWater.getMax()));
             }
         });
 
@@ -71,12 +77,17 @@ public class WaterRegimeFragment extends Fragment {
             @Override
             public void onChanged(Integer integer) {
                 tvWaterCount.setText(MessageFormat.format("{0}/{1}ml", integer, vm.waterGoalCount.getValue()));
+                pbWater.setProgress(integer);
+                Log.i("current", String.valueOf(pbWater.getProgress()));
             }
         });
 
         sbDrunkWater.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+
+                tvAddCount.setText(String.valueOf(i) + getString(R.string.ml));
+
                 if(i <= seekBar.getMax()*0.25){
                     ivGlass.setImageResource(R.drawable.glass_25);
                 }
@@ -109,6 +120,7 @@ public class WaterRegimeFragment extends Fragment {
 
         tvWaterCount = view.findViewById(R.id.tvWaterRegimeProgress);
         tvGoalRowDays = view.findViewById(R.id.tvWaterRegimeGoalAchievedDays);
+        tvAddCount = view.findViewById(R.id.tvAddCount);
 
         pbWater = view.findViewById(R.id.pbWaterRegimeProgress);
 

@@ -1,6 +1,7 @@
 package com.novikov.mobilehealth.adapters;
 
 import android.content.Context;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.GlobalValues;
 import com.novikov.mobilehealth.R;
+import com.novikov.mobilehealth.domain.interfaces.IOnWorkoutRVItemClick;
 import com.novikov.mobilehealth.domain.models.WorkoutModel;
 
 import java.util.List;
@@ -19,10 +22,12 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
 
     private LayoutInflater inflater;
     private List<WorkoutModel> workoutModels;
+    private IOnWorkoutRVItemClick onWorkoutClick;
 
-    public WorkoutAdapter(Context context, List<WorkoutModel> workoutModels) {
+    public WorkoutAdapter(Context context, List<WorkoutModel> workoutModels, IOnWorkoutRVItemClick onWorkoutClick) {
         this.workoutModels = workoutModels;
         this.inflater = LayoutInflater.from(context);
+        this.onWorkoutClick = onWorkoutClick;
     }
 
     @NonNull
@@ -40,6 +45,14 @@ public class WorkoutAdapter extends RecyclerView.Adapter<WorkoutAdapter.ViewHold
         holder.tvTitle.setText(workoutModel.getTitle());
         holder.ivWorkoutImage.setImageResource(workoutModel.getImgRes());
         holder.tvDescription.setText(workoutModel.getDescription());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onWorkoutClick.onClick(workoutModel, position);
+                GlobalValues.workoutType = workoutModel.getTitle();
+            }
+        });
     }
 
     @Override

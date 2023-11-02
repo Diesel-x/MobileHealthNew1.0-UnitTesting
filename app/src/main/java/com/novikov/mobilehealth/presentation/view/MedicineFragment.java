@@ -1,6 +1,7 @@
 package com.novikov.mobilehealth.presentation.view;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,10 +18,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.novikov.mobilehealth.R;
 import com.novikov.mobilehealth.adapters.MedicineAdapter;
+import com.novikov.mobilehealth.domain.interfaces.IOnMedicineRVItemClick;
 import com.novikov.mobilehealth.domain.models.MedicineModel;
 import com.novikov.mobilehealth.presentation.viewmodels.MedicineViewModel;
 import com.novikov.mobilehealth.presentation.viewmodels.PFCViewModel;
@@ -31,6 +34,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MedicineFragment extends Fragment {
@@ -47,6 +51,8 @@ public class MedicineFragment extends Fragment {
 
     //Dialog
     private EditText etName, etTime, etDuration, etStartDate;
+
+    private TextView tvTitle;
 
     private Spinner spinnerType;
     private Button btnDialogAdd;
@@ -69,9 +75,82 @@ public class MedicineFragment extends Fragment {
 
         vm.getCurrentData();
 
+        IOnMedicineRVItemClick onMedicineRVItemClick = new IOnMedicineRVItemClick() {
+            @Override
+            public void onClick(MedicineModel model, int position) {
+                dialog = new Dialog(requireActivity());
+                dialog.setContentView(R.layout.dialog_medicine_adding);
+
+                btnDialogAdd = dialog.findViewById(R.id.btnAddMedicine);
+                etName = dialog.findViewById(R.id.etAddMedicineName);
+                etDuration = dialog.findViewById(R.id.etAddMedicineCourseDuration);
+                etStartDate = dialog.findViewById(R.id.etAddMedicineStartDate);
+                etTime = dialog.findViewById(R.id.etAddMedicineReceptionTime);
+                spinnerType = dialog.findViewById(R.id.spinnerAddMedicineType);
+                tvTitle = dialog.findViewById(R.id.tvMedicineAddingTitle);
+                tvTitle.setText("Изменение лекарства");
+
+
+                etName.setText(model.getName().toString());
+                etDuration.setText(String.valueOf(model.getDuration()));
+                etStartDate.setText(model.getStartDate());
+                etTime.setText(model.getTime());
+
+                btnDialogAdd.setText("Удалить");
+
+                dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        if(etName.getText().toString().isEmpty() || !(etTime.getText().toString().matches("\\d{2}:\\d{2}")) ||
+                                etDuration.getText().toString().isEmpty() || !(etStartDate.getText().toString().matches("\\d{2}.\\d{2}.\\d{4}"))){
+                            Toast.makeText(requireContext(), "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            if(Integer.valueOf(etStartDate.getText().toString().substring(0,4)) < 2015 ||
+                                    Integer.valueOf(etStartDate.getText().toString().substring(5,7)) < 12 ||
+                                    Integer.valueOf(etStartDate.getText().toString().substring(5,7)) < 12){
+                                medicineList.set(position, new MedicineModel(etName.getText().toString(),
+                                        etTime.getText().toString(),
+                                        Integer.parseInt(etDuration.getText().toString()),
+                                        spinnerType.getSelectedItem().toString(),
+                                        etStartDate.getText().toString()));
+
+                                rvMedicines.getAdapter().notifyDataSetChanged();
+
+                                vm.medicineList.setValue(medicineList);
+
+                                vm.saveCurrentData();
+                            }
+                            else{
+                                Toast.makeText(requireContext(), "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+                    }
+                });
+
+                btnDialogAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        medicineList.remove(position);
+
+                        rvMedicines.getAdapter().notifyDataSetChanged();
+
+                        vm.medicineList.setValue(medicineList);
+
+                        vm.saveCurrentData();
+
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        };
+
         medicineList = vm.medicineList.getValue();
 
-        adapter = new MedicineAdapter(medicineList, requireContext());
+        adapter = new MedicineAdapter(medicineList, requireContext(), onMedicineRVItemClick);
 
         rvMedicines.setAdapter(adapter);
 
@@ -100,22 +179,31 @@ public class MedicineFragment extends Fragment {
 //                                    Integer.parseInt(etDuration.getText().toString()),
 //                                    spinnerType.getSelectedItem().toString(),
 //                                    LocalDate.parse(etStartDate.getText(), DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
-                            if(etName.getText().toString().isEmpty() || etTime.getText().toString().isEmpty() ||
-                                    etDuration.getText().toString().isEmpty() || etStartDate.getText().toString().isEmpty()){
+                            if(etName.getText().toString().isEmpty() || !(etTime.getText().toString().matches("\\d{2}:\\d{2}")) ||
+                                    etDuration.getText().toString().isEmpty() || !(etStartDate.getText().toString().matches("\\d{2}.\\d{2}.\\d{4}"))){
                                 Toast.makeText(requireContext(), "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                medicineList.add(new MedicineModel(etName.getText().toString(),
-                                        etTime.getText().toString(),
-                                        Integer.parseInt(etDuration.getText().toString()),
-                                        spinnerType.getSelectedItem().toString(),
-                                        etStartDate.getText().toString()));
+                                if(Integer.valueOf(etStartDate.getText().toString().substring(0,4)) < 2015 ||
+                                        Integer.valueOf(etStartDate.getText().toString().substring(5,7)) < 12 ||
+                                        Integer.valueOf(etStartDate.getText().toString().substring(5,7)) < 12){
+                                    medicineList.add(new MedicineModel(etName.getText().toString(),
+                                            etTime.getText().toString(),
+                                            Integer.parseInt(etDuration.getText().toString()),
+                                            spinnerType.getSelectedItem().toString(),
+                                            etStartDate.getText().toString()));
 
-                                rvMedicines.getAdapter().notifyDataSetChanged();
+                                    rvMedicines.getAdapter().notifyDataSetChanged();
 
-                                vm.medicineList.setValue(medicineList);
+                                    vm.medicineList.setValue(medicineList);
 
-                                vm.saveCurrentData();
+                                    vm.saveCurrentData();
+                                }
+                                else{
+                                    Toast.makeText(requireContext(), "Неправильное заполнение полей", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+
 
                                 Log.i("dialog", "complete");
                                 dialog.dismiss();
@@ -125,6 +213,7 @@ public class MedicineFragment extends Fragment {
                 Log.i("fragment", "complete");
                 }
         });
+
         vm.medicineList.observe(requireActivity(), new Observer<List<MedicineModel>>() {
             @Override
             public void onChanged(List<MedicineModel> medicineModels) {

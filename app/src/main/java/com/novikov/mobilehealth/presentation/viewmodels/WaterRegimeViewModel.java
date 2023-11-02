@@ -29,7 +29,6 @@ public class WaterRegimeViewModel extends ViewModel {
         this.context = context;
 
         getCurrentData();
-        setWaterGoal();
 
     }
 

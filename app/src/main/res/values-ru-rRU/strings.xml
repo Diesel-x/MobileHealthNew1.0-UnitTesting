@@ -46,5 +46,25 @@
         <item>Таблетка</item>
         <item>Сироп</item>
     </string-array>
+    <string name="breast_description">трицепсы, плечи</string>
+    <string name="back_description">бицепсы, предплечья</string>
+    <string name="legs_description">поясница, пресс</string>
+    <string name="abs_description">ноги</string>
+    <string name="exercises">Упражнения</string>
+    <string name="go_back">Назад</string>
+    <string name="classic_push_ups">Классические отжимания</string>
+    <string name="diamond_push_ups">Алмазные отжимания</string>
+    <string name="wide_push_ups">Широкие отжимания</string>
+    <string name="classic_pull_ups">Классические подтягивания</string>
+    <string name="wide_pull_ups">Широкие подтягивания</string>
+    <string name="superman">Супермен</string>
+    <string name="squats">Приседания</string>
+    <string name="lunges">Выпады</string>
+    <string name="crossfit_squats">Кроссфит приседания</string>
+    <string name="toe_up">Подъем на носки</string>
+    <string name="twists">Скручивания</string>
+    <string name="half_twists">Полускручивания</string>
+    <string name="alpinist">Альпинист</string>
+    <string name="plank">Планка</string>
 
 </resources>
