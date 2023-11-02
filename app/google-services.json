@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "398524243779",
+    "firebase_url": "https://mobilehealth-93855-default-rtdb.firebaseio.com",
+    "project_id": "mobilehealth-93855",
+    "storage_bucket": "mobilehealth-93855.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398524243779:android:b24946a9c3d9cfbc8d19f6",
+        "android_client_info": {
+          "package_name": "com.example.mobilehealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398524243779-2kc4rspoiup4gudklg8i736045je54p1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9RawUinXL0dsd7-EU48Ub2oodSwAkaM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398524243779-2kc4rspoiup4gudklg8i736045je54p1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398524243779:android:09298845d626e9998d19f6",
+        "android_client_info": {
+          "package_name": "com.novikov.mobilehealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398524243779-2kc4rspoiup4gudklg8i736045je54p1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9RawUinXL0dsd7-EU48Ub2oodSwAkaM0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398524243779-2kc4rspoiup4gudklg8i736045je54p1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
